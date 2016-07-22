@@ -1,0 +1,95 @@
+<section data-ng-controller="DriversUpdateController as driverUpCtrl">
+    <div class="modal-header">
+        <h3 class="modal-title">Update: {{driver.driverName}}</h3>
+    </div>
+    <div class="modal-body">
+        <form name="updateDriverForm">
+            <fieldset>
+                <div class="row">
+                    <div class="form-group">
+                        <div data-ng-show="error" class="text-center text-danger">
+                            <div class="alert alert-danger" role="alert">
+                                <strong data-ng-bind="error"></strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <i class="glyphicon glyphicon-file cust-profile" ng-class="{'text-success': driver.deployed, 'text-danger': !driver.deployed}"></i>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label" for="company">Manufacturer</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="driver.company" id="company" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="instrument">Instrument Model Name</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="driver.instrument" id="instrument" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="instrumentType">Instrument Type</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="driver.instrumentType" id="instrumentType" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="deviceType">Device Type</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="driver.deviceType" id="deviceType" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-push-6">
+                        <div class="form-group">
+                            <label class="control-label" for="communication">Communication Protocol</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="driver.communication" id="communication" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="status">Status</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="driverCtrl.status" id="status" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="deployed">Deployed</label>
+                            <div class="controls">
+                                <input type="checkbox" data-ng-model="driver.deployed" id="deployed" class="form-control checkbox-left">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-sm-pull-6">
+                        <div class="form-group">
+                            <label class="control-label" for="driverName">Driver Name</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="driver.driverName" id="driverName" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="driverId">Driver ID</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="driver.driverId" id="driverId" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="description">Description</label>
+                            <div class="controls">
+                                <textarea name="text" data-ng-model="driver.description" id="description" class="form-control" rows="10" cols="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" ng-click="driverUpCtrl.update(driver); ok()" ng-disabled="updateDriverForm.$invalid">Update & Close</button>
+        <button class="btn btn-danger" ng-click="cancel()">Cancel & Refresh</button>
+    </div>
+</section>
