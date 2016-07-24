@@ -1,6 +1,6 @@
-/**
- * Created by spin on 7/16/16.
- */
+/*
+*  Instrument meta data
+* */
 
 var mongoose = require('mongoose');
 
@@ -30,3 +30,4 @@ var InstrumentSchema = new mongoose.Schema({
 
 });
 
+mongoose.model('Instrument', InstrumentSchema);
