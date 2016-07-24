@@ -1,6 +1,7 @@
 /*
-* Standardize driver template
-*
+* 1. force structure in ts driver design--> reduce customization and lead to generic UI
+* 2. perform basic driver validation
+* 3. reference Instrument meta data in the driver, potentially tie tOrg, Customer Success and other crucial value-add together
 * */
 
 var mongoose = require('mongoose');
