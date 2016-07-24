@@ -6,7 +6,7 @@
 var mongoose = require('mongoose');
 
 var ObjectId = mongoose.Schema.Types.ObjectId;
-var mixType  = mongoose.Schema.Types.Mixed;
+var MixType  = mongoose.Schema.Types.Mixed;
 
 var availableUnits  = ['degC', 'degF', 'Watt', 'psi']; // and many other, ts owns the conversion, pronounciation (phone call) and format
 var availableColors = ['#ff0000', '#ff0020'];
@@ -24,7 +24,7 @@ var SensorSchema = new Mongoose.Schema({
     command_id          : {type: String},
     command_params      : [{
         cmd_param   : {type: String},
-        default_val : mixType,
+        default_val : MixType,
         param_min   : {type: Number},
         param_max   : {type: Number}
     }],
@@ -46,11 +46,16 @@ var FeedSchema = new Mongoose.Schema({
     triggerType             : TriggerSchema
 });
 
+var FilterSchema = new Mongoose.Schema({
+    regex       :   {type: String},
+    action      :   [{action_id: String, property: String, value: String}]
+});
+
 var CommandSchema = new Mongoose.Schema({
     command_id              :   {type: String, required: [true, 'Every command needs an id']},
     sample_response         :   {type: String},
     sample_response_final   :   {type: String},
-    filter                  :   {type: String},
+    filter                  :   FilterSchema,
     timeout                 :   {type: Number},
     pre_process_func        :   {type: String},
     priority                :   {type: Number, default: 3, enum: [1,2,3]} // todo: how many levels of priority?
@@ -59,7 +64,7 @@ var CommandSchema = new Mongoose.Schema({
 var UISchema = new Mongoose.Schema({
     partial                 :   {type: String},
     logo                    :   {type: String}
-})
+});
 
 var DriverSchema = new mongoose.Schema({
 
@@ -75,8 +80,12 @@ var DriverSchema = new mongoose.Schema({
     sensors     :   [SensorSchema],
     feeds       :   [FeedSchema],
     commands    :   [CommandSchema],
-    unsolicited :   '',
-    ui          :   UISchema
+    unsolicited :   { // todo: how to combine unsolicited and command-driven 
+        sample_response_files   :   [{type:String}],
+        filters                 :   [FilterSchema]
+    },
+    ui          :   UISchema,
+    other       :   MixType
 });
 
 mongoose.model('Driver', DriverSchema);
