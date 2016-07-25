@@ -4,14 +4,15 @@
 * 3. reference Instrument meta data in the driver, potentially tie tOrg, Customer Success and other crucial value-add together
 * */
 
-var mongoose = require('mongoose');
+var Mongoose = require('mongoose');
 
-var ObjectId = mongoose.Schema.Types.ObjectId;
-var MixType  = mongoose.Schema.Types.Mixed;
+var ObjectId = Mongoose.Schema.Types.ObjectId;
+var MixType  = Mongoose.Schema.Types.Mixed;
 
 var availableUnits  = ['degC', 'degF', 'Watt', 'psi']; // and many other, ts owns the conversion, pronounciation (phone call) and format
 var availableColors = ['#ff0000', '#ff0020'];
 
+/** Serial Communication **/
 var SerialComSchema = new Mongoose.Schema({
     port        :  {type:String, default: '/dev/ttyUSB0'},
     baudRate    :  {type:Number, default: 9600, enum: [9600,14400, 19200,28800,38400,57600, 115200, 230400]},
@@ -21,74 +22,116 @@ var SerialComSchema = new Mongoose.Schema({
 
 });
 
+/** Sensor **/
 var SensorSchema = new Mongoose.Schema({
     command_id          : {type: String},
+    command_string      : {type: String},
     command_params      : [{
-        cmd_param   : {type: String},
+        cmd_param   : {type: String}, // param name, should match exactly with the one used in the command_string 'ab{cmd_param}\r'
         default_val : MixType,
         param_min   : {type: Number},
         param_max   : {type: Number}
     }],
-    cmd_description : {type: String}
+    cmd_description     : {type: String},
     interval            : {type: Number, default: 5, min: 0.8}
 });
 
+/** Trigger Action **/
+var TriggerActionSchema = new Mongoose.Schema({
+    method      :   {type: String, enum: ['email','sms','phone']},
+    template    :   {type: String}  // if none, will use the default template.
+});
+/** Trigger **/
 var TriggerSchema = new Mongoose.Schema({
+    allow_multiple      :   {type: Boolean, default: true}, // you are allowed to create multiple trigger on temperature feed
+                                                            // todo: what if trigger is created and then the driver changes, how about legacy triggers
     trigger_type        :   {type: String, enum: ['state','numerical']},
     trigger_labels      :   [{value: Number, label: String}],
-    trigger_eval        :   {type: String}
+    trigger_eval        :   {type: String},
+    one_time            :   {type: Boolean, default: false}, // one_time trigger can only be triggered once, i.e, 'alert me when idle'
+    trigger_action      :   [TriggerActionSchema]
 });
 
+/** Feed **/
 var FeedSchema = new Mongoose.Schema({
     parameter_id            : {type: String, required: [true, 'Every parameter must have an id']},
     display_name            : {type: String}, // for display
     unit                    : {type: String, enum: [availableUnits]},
     color                   : {type: String, enum: [availableColors]},
-    triggerType             : TriggerSchema
+    trigger                 : TriggerSchema
 });
 
+/** Filter **/
 var FilterSchema = new Mongoose.Schema({
     regex       :   {type: String},
-    action      :   [{action_id: String, property: String, value: String}]
+    // todo: should action contain trigger? this way we can decide whether cycle complete should show up on the trigger modal.
+    // todo: (commonly known as the alert modal, but essentially user is creating/enabling the triggers)
+    action      :   [{
+        action_id   : String,
+        property    : String,
+        value       : String,
+        encoding    : {type : String}, // todo: how to think about this?
+        trigger     : TriggerSchema
+    }]
 });
 
+/** Command **/
 var CommandSchema = new Mongoose.Schema({
     command_id              :   {type: String, required: [true, 'Every command needs an id']},
     sample_response         :   {type: String},
     sample_response_final   :   {type: String},
     filter                  :   FilterSchema,
-    timeout                 :   {type: Number},
+    timeout                 :   {type: Number}, // if there is no timeout, global.timeout will be used
     pre_process_func        :   {type: String},
     priority                :   {type: Number, default: 3, enum: [1,2,3]} // todo: how many levels of priority?
 });
 
+/** UI **/
 var UISchema = new Mongoose.Schema({
     partial                 :   {type: String},
     logo                    :   {type: String}
 });
 
-var DriverSchema = new mongoose.Schema({
 
-    instrument : {type: ObjectId, ref: 'Instrument'},
+/** Driver **/
+var DriverSchema = new Mongoose.Schema({
+    // ref to instrument model
+    instrument      : {type: ObjectId, ref: 'Instrument'},
+
     communication : {
-        serial : SerialComSchema,
-        bash   : ''
+        serial      : SerialComSchema,
+        bash        : ''     // todo: bash script and also allow bash script to take parameter
     },
-    global      : {
+    global          : {
         delimiter   :   {type: String},
         timeout     :   {type: Number, default:1, min: 0.1}
     },
-    sensors     :   [SensorSchema],
-    feeds       :   [FeedSchema],
-    commands    :   [CommandSchema],
-    unsolicited :   { // todo: how to combine unsolicited and command-driven 
+    sensors         :   [SensorSchema],
+    feeds           :   [FeedSchema],
+    commands        :   [CommandSchema],
+    unsolicited     :   {   // todo: how to combine unsolicited and command-driven, or it's ok to separate them for now
         sample_response_files   :   [{type:String}],
         filters                 :   [FilterSchema]
     },
-    ui          :   UISchema,
-    other       :   MixType
+    ui              :   UISchema,
+    other           :   MixType,
+
+    // device specific configuration
+    // address and etc
+    device_config    :  [{
+        name  :  {type: String},
+        type  :  {type: String, default: 'string', enum: ['string','number']}
+    }],
+
+    // user specific configuration
+    // operator Id and etc
+    user_config      :  [{
+        name  :  {type: String},
+        type  :  {type: String, default: 'string', enum: ['string','number']}
+    }]
+
 });
 
-mongoose.model('Driver', DriverSchema);
+Mongoose.model('Driver', DriverSchema);
 
 
