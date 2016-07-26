@@ -10,7 +10,7 @@ var ObjectId = Mongoose.Schema.Types.ObjectId;
 var MixType  = Mongoose.Schema.Types.Mixed;
 
 var availableUnits  = ['degC', 'degF', 'Watt', 'psi']; // and many other, ts owns the conversion, pronounciation (phone call) and format
-var availableColors = ['#ff0000', '#ff0020'];
+var availableColors = ['#ff0000', '#ff0020']; // and many others, ts owns the color.
 
 /** Serial Communication **/
 var SerialComSchema = new Mongoose.Schema({
@@ -70,6 +70,7 @@ var CommandSchema = new Mongoose.Schema({
     sample_response         :   {type: String},
     sample_response_final   :   {type: String},
     filter                  :   FilterSchema,
+    returns                 :   [{name: String}], // should match the feed's name
     timeout                 :   {type: Number}, // if there is no timeout, global.timeout will be used
     pre_process_func        :   {type: String},
     post_process_func       :   {type: String},
@@ -78,17 +79,17 @@ var CommandSchema = new Mongoose.Schema({
 
 /** Feed **/
 var FeedSchema = new Mongoose.Schema({
-    parameter_id            : {type: String, required: [true, 'Every parameter must have an id']},
-    display_name            : {type: String}, // for display
-    unit                    : {type: String, enum: [availableUnits]},
-    color                   : {type: String, enum: [availableColors]},
-    trigger                 : TriggerSchema
+    name                    :   {type: String, required: [true, 'Every parameter must have an id']},
+    display_name            :   {type: String}, // for display
+    unit                    :   {type: String, enum: [availableUnits]},
+    color                   :   {type: String, enum: [availableColors]},
+    trigger                 :   TriggerSchema
 });
 
 /** Sensor **/
 var SensorSchema = new Mongoose.Schema({
-    command             : CommandSchema,
-    interval            : {type: Number, default: 5, min: 0.8}
+    command             :   CommandSchema,
+    interval            :   {type: Number, default: 5, min: 0.8}
 });
 
 /** UI **/
@@ -101,14 +102,14 @@ var UISchema = new Mongoose.Schema({
 /** Driver **/
 var DriverSchema = new Mongoose.Schema({
     // ref to instrument model
-    instrument      : {type: ObjectId, ref: 'Instrument'},
+    instrument      :   {type: ObjectId, ref: 'Instrument'},
 
-    tOrg            : {type: String},
+    tOrg            :   {type: String},
     communication : {
-        serial      : SerialComSchema,
-        bash        : ''     // todo: bash script and also allow bash script to take parameter
+        serial      :   SerialComSchema,
+        bash        :   ''     // todo: bash script and also allow bash script to take parameter
     },
-    global          : {
+    global          :   {
         delimiter   :   {type: String},
         timeout     :   {type: Number, default:1, min: 0.1}
     },
