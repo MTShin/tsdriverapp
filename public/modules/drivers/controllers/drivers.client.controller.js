@@ -96,7 +96,7 @@ driversApp.controller('DriversCreateController', ['$scope', 'Drivers', 'Notify',
 
 	function($scope, Drivers, Notify) {
 
-		$scope.options = ['PRE-OP','DOABLE','DEMO','ALPHA TEST','DEPLOYED','CANCELLED'];
+		$scope.options = ['PRE-OP','DOABLE','DEMO','IN PROGRESS','DEPLOYED','CANCELLED'];
 
 		// Create new Driver
 		this.create = function() {
@@ -118,7 +118,8 @@ driversApp.controller('DriversCreateController', ['$scope', 'Drivers', 'Notify',
 				tscontact: this.tscontact,
 				engineer: this.engineer,
 				cost: this.cost,
-				other: this.other
+				jira: this.jira,
+				dataextraction: this.dataextraction
 			});
 
 			// Redirect after save
@@ -137,7 +138,7 @@ driversApp.controller('DriversCreateController', ['$scope', 'Drivers', 'Notify',
 driversApp.controller('DriversUpdateController', ['$scope', 'Drivers', 'Notify',
 	function($scope, Drivers, Notify) {
 
-		$scope.options = ['PRE-OP','DOABLE','DEMO','ALPHA TEST','DEPLOYED','CANCELLED'];
+		$scope.options = ['PRE-OP','DOABLE','DEMO','IN PROGRESS','DEPLOYED','CANCELLED'];
 
 		// Update existing Driver
 		this.update= function(updatedDriver) {

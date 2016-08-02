@@ -86,7 +86,12 @@ var DriverSchema = new Schema({
         default: '',
         trim: true
     },
-	other: {
+	jira: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	dataextraction: {
 		type: String,
 		default: '',
 		trim: true

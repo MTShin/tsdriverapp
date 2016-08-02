@@ -28,14 +28,14 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 			{
 				icon:'glyphicon-file',
 				color:'text-warning',
-				name:'ALPHA TEST',
-				description:'Development in progress, not ready for deployment'
+				name:'IN PROGRESS',
+				description:'Development and testing stage, not ready for deployment'
 			},
 			{
 				icon:'glyphicon-file',
 				color:'text-success',
 				name:'DEPLOYED',
-				description:'In use or have been in use by customers'
+				description:'Tested and in use or have been used by customers'
 			},
 			{
 				icon:'glyphicon-file',
