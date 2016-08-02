@@ -26,9 +26,9 @@ Search through available drivers/planned enablement instruments by:
 - Built upon the MEAN Stack ([MongoDB](https://www.mongodb.com/), [Express.js](https://expressjs.com/), [Angular.js](https://github.com/angular/angular.js), and [Node.js](https://nodejs.org/en/))
 - Based on [Yeoman scaffolding tool](http://yeoman.io/)
 - Database hosted on [mongoLab](https://mlab.com/home), great tool to easily analyze database contents!
-  *username: tetrascience
-  *password: tetrascience123
-  *database: tsdriverapp
+  * username: tetrascience
+  * password: tetrascience123
+  * database: tsdriverapp
 
 ##Structure
 Notable directories/files are described here
