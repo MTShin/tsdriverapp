@@ -29,7 +29,9 @@ module.exports = function(db) {
 
 	// Globbing model files
 	config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {
-		require(path.resolve(modelPath));
+		if (/Driver|Instrument/g.test(modelPath)) return;
+		else
+			require(path.resolve(modelPath));
 	});
 
 	// Setting application local variables

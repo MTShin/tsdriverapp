@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
 
 [![Build Status](https://travis-ci.org/meanjs/mean.svg?branch=master)](https://travis-ci.org/meanjs/mean)
@@ -165,3 +166,21 @@ search all the instruments based on
 * MSRP
 
 >>>>>>> 1b3c5361d0230e132b0d6fea8c2205c7b3d0999e
+=======
+##ts-instrument
+Search through available drivers/planned enablement instruments by:
+
+- Instrument
+- Instrument Type
+- Manufacturer
+- Instructions/Description
+- Status
+- tOrg
+- End User
+- TS Contact
+- Engineer
+- MSRP
+- Communication Protocol
+- Driver name
+- Driver ID
+>>>>>>> e0137eb2536d3f69d0ee25e2b4700be5733a3145
