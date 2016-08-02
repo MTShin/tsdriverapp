@@ -23,7 +23,7 @@ Search through available drivers/planned enablement instruments by:
 5. See it in action by going to localhost:3000 in a browser
 
 ##Resources
-- Built upon the MEAN Stack ([MongoDB](https://www.mongodb.com/), [Express.js](https://expressjs.com/), [Angular.js](https://github.com/angular/angular.js), and [Node.js](https://nodejs.org/en/))
+- Built using the MEAN Stack ([MongoDB](https://www.mongodb.com/), [Express.js](https://expressjs.com/), [Angular.js](https://github.com/angular/angular.js), and [Node.js](https://nodejs.org/en/))
 - Based on [Yeoman scaffolding tool](http://yeoman.io/)
 - Database hosted on [mongoLab](https://mlab.com/home), great tool to easily analyze database contents!
   * username: tetrascience
