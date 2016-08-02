@@ -14,11 +14,15 @@
                         </div>
                     </div>
                     <div class="col-sm-6 text-center">
-                        <i class="glyphicon glyphicon-file cust-profile" ng-class="{'text-success': driverCtrl.deployed, 'text-danger': !driverCtrl.deployed}"></i>
+                        <i class="glyphicon glyphicon-file cust-profile" ng-class="{
+                        'text-info': driverCtrl.status === 'PRE-OP' || driverCtrl.status === 'DOABLE',
+                        'text-success': driverCtrl.status === 'DEMO' || driverCtrl.status === 'DEPLOYED',
+                        'text-warning': driverCtrl.status === 'ALPHA TEST',
+                        'text-danger': driverCtrl.status === 'CANCELLED'}"></i>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="control-label" for="company">Manufacturer</label>
+                            <label class="control-label" for="company">Manufacturer (tOrg)</label>
                             <div class="controls">
                                 <input type="text" data-ng-model="driverCtrl.company" id="company" class="form-control">
                             </div>
@@ -54,13 +58,31 @@
                         <div class="form-group">
                             <label class="control-label" for="status">Status</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="driverCtrl.status" id="status" class="form-control">
+                                <select data-ng-model="driverCtrl.status" id="status" class="form-control" ng-options="option for option in options"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="deployed">Deployed</label>
+                            <label class="control-label" for="customer">Customer (uOrg)</label>
                             <div class="controls">
-                                <input type="checkbox" data-ng-model="driverCtrl.deployed" id="deployed" class="form-control checkbox-left">
+                                <input type="text" data-ng-model="driverCtrl.customer" id="customer" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="tscontact">TS Contact</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="driverCtrl.tscontact" id="tscontact" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="engineer">Engineer</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="driverCtrl.engineer" id="engineer" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cost">MSRP</label>
+                            <div class="controls">
+                                <input type="text" data-ng-model="driverCtrl.cost" id="cost" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -80,7 +102,7 @@
                         <div class="form-group">
                             <label class="control-label" for="description">Description</label>
                             <div class="controls">
-                                <textarea name="text" data-ng-model="driverCtrl.description" id="description" class="form-control" rows="10" cols="10"></textarea>
+                                <textarea name="text" data-ng-model="driverCtrl.description" id="description" class="form-control" rows="12" cols="10"></textarea>
                             </div>
                         </div>
                     </div>

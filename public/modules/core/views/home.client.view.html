@@ -1,22 +1,28 @@
 <section data-ng-controller="HomeController">
+	<div class="page-header">
+		<p style="text-align:center"><img align="middle" src="/modules/core/img/logo.png"></p>
+		<h2 style="text-align:center">Welcome to the TetraScience Driver Database</h2>
+		<p style="text-align:center">All potential or historical instrument driver information can be documented here!</p>
+	</div>
+	<h2 style="text-align:center">Driver Status</h2>
+	<p style="text-align:center">The statuses of driver production are defined below.</p>
 	<div class="row">
-
-		<div class="col-sm-6" ng-repeat="alert in alerts">
+		<div class="col-sm-6" ng-repeat="homelabel in homelabels" align="center">
 			<div class="row">
 				<div class="col-xs-4">
 					<h1 class="pull-right">
-						<button type="button" class="btn" ng-class="alert.color">
-							<i class="glyphicon" ng-class="alert.icon"></i>
-						</button>
+						<span ng-class="homelabel.color">
+							<i class="glyphicon cust-avatar" ng-class="homelabel.icon"></i>
+						</span>
 					</h1>
 				</div>
 				<div class="col-xs-8">
-					<h1>{{alert.total}}</h1>
+					<h3>{{homelabel.name}}</h3>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-8 col-xs-offset-4">
-					<span class="text-muted">{{alert.description}}</span>
+					<span class="text-muted">{{homelabel.description}}</span>
 				</div>
 			</div>
 		</div>

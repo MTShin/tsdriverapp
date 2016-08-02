@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://tsdriverapp:tsdriverapp@ds023435.mlab.com:23435/tsdriverapp',
+	db: 'mongodb://tsdriverapp:tsdriverapp@ds011765.mlab.com:11765/tsdriverapp',
 	app: {
 		title: 'tsdriverapp - Development Environment'
 	},

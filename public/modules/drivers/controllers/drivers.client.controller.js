@@ -93,7 +93,11 @@ driversApp.controller('DriversController', ['$scope', '$stateParams', 'Authentic
 ]);
 
 driversApp.controller('DriversCreateController', ['$scope', 'Drivers', 'Notify',
+
 	function($scope, Drivers, Notify) {
+
+		$scope.options = ['PRE-OP','DOABLE','DEMO','ALPHA TEST','DEPLOYED','CANCELLED'];
+
 		// Create new Driver
 		this.create = function() {
 			// Create new Driver object
@@ -101,20 +105,20 @@ driversApp.controller('DriversCreateController', ['$scope', 'Drivers', 'Notify',
 				driverName: this.driverName,
 				driverId: this.driverId,
 				communication: this.communication,
+				//tOrg
 				company: this.company,
 				instrument: this.instrument,
 				deviceType: this.deviceType,
 				description: this.description,
-				deployed: this.deployed,
 				instrumentType: this.instrumentType,
 				status: this.status,
-                instruction: this.instruction,
-                torg: this.torg,
-                customer: this.customer,
-                tscontact: this.tscontact,
-                engineer: this.engineer,
-                cost: this.cost,
-
+				instruction: this.instruction,
+				//uOrg
+				customer: this.customer,
+				tscontact: this.tscontact,
+				engineer: this.engineer,
+				cost: this.cost,
+				other: this.other
 			});
 
 			// Redirect after save
@@ -125,12 +129,15 @@ driversApp.controller('DriversCreateController', ['$scope', 'Drivers', 'Notify',
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+
 		};
 	}
 ]);
 
 driversApp.controller('DriversUpdateController', ['$scope', 'Drivers', 'Notify',
 	function($scope, Drivers, Notify) {
+
+		$scope.options = ['PRE-OP','DOABLE','DEMO','ALPHA TEST','DEPLOYED','CANCELLED'];
 
 		// Update existing Driver
 		this.update= function(updatedDriver) {

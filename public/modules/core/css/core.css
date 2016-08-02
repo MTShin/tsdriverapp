@@ -13,6 +13,10 @@
 .ng-valid.ng-dirty {
 	border-color: #78FA89;
 }
+.cust-avatar {
+	font-size: 40px;
+}
 body {
 	background-color: #eeeeee;
 }
+

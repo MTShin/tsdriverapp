@@ -10,53 +10,42 @@ var mongoose = require('mongoose'),
  * Driver Schema
  */
 var DriverSchema = new Schema({
-	//firstName
+
 	driverName: {
 		type: String,
 		default: '',
 		trim: true
 	},
-	//surname
 	driverId: {
 		type: String,
 		default: '',
 		trim: true
 	},
-	//suburb
 	communication: {
 		type: String,
 		default: '',
 		trim: true
 	},
-	//country
 	company: {
 		type: String,
 		default: '',
 		trim: true
 	},
-	//industry
 	instrument: {
 		type: String,
 		default: '',
 		trim: true
 	},
-	//email
 	deviceType: {
 		type: String,
 		default: '',
 		trim: true
 	},
-	//phone
 	description: {
 		type: String,
 		default: '',
 		trim: true
 	},
-	//referred
-	deployed: {
-		type: Boolean
-	},
-	//channel
 	instrumentType: {
 		type: String,
 		default: '',
@@ -97,6 +86,11 @@ var DriverSchema = new Schema({
         default: '',
         trim: true
     },
+	other: {
+		type: String,
+		default: '',
+		trim: true
+	},
 	created: {
 		type: Date,
 		default: Date.now
@@ -106,5 +100,6 @@ var DriverSchema = new Schema({
 		ref: 'User'
 	}
 });
+
 
 mongoose.model('Driver', DriverSchema);

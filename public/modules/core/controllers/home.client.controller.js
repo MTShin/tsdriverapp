@@ -6,44 +6,45 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 
-		$scope.alerts = [
+		$scope.homelabels = [
 			{
-				icon:'glyphicon-book',
-				color:'btn-success',
-				total:'20,408',
-				description:'TOTAL DRIVERS'
+				icon:'glyphicon-file',
+				color:'text-info',
+				name:'PRE-OP',
+				description:'Research being done on instrument'
 			},
 			{
-				icon:'glyphicon-wrench',
-				color:'btn-primary',
-				total:'8,382',
-				description:'DRIVERS IN DEVELOPMENT'
+				icon:'glyphicon-file',
+				color:'text-info',
+				name:'DOABLE',
+				description:'Deemed enable-able post PRE-OP research'
 			},
 			{
-				icon:'glyphicon-time',
-				color:'btn-success',
-				total:'527',
-				description:'NEW DRIVERS IN PAST MONTH'
+				icon:'glyphicon-file',
+				color:'text-success',
+				name:'DEMO',
+				description:'Basic enablement done for a customer demo'
 			},
 			{
-				icon:'glyphicon-ok',
-				color:'btn-info',
-				total:'85,000',
-				description:'INSTRUMENTS DEPLOYED'
+				icon:'glyphicon-file',
+				color:'text-warning',
+				name:'ALPHA TEST',
+				description:'Development in progress, not ready for deployment'
 			},
 			{
-				icon:'glyphicon-eye-open',
-				color:'btn-warning',
-				total:'268',
-				description:'FOLLOW UP REQUIRED'
+				icon:'glyphicon-file',
+				color:'text-success',
+				name:'DEPLOYED',
+				description:'In use or have been in use by customers'
 			},
 			{
-				icon:'glyphicon-flag',
-				color:'btn-danger',
-				total:'348',
-				description:'REFERRALS TO MODERATE'
+				icon:'glyphicon-file',
+				color:'text-danger',
+				name:'CANCELLED',
+				description:'Terminated for various reasons'
 			}
 		];
+
 
 	}
 ]);
