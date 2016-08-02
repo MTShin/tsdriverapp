@@ -25,6 +25,7 @@ Search through available drivers/planned enablement instruments by:
 ##Resources
 - Built using the MEAN Stack ([MongoDB](https://www.mongodb.com/), [Express.js](https://expressjs.com/), [Angular.js](https://github.com/angular/angular.js), and [Node.js](https://nodejs.org/en/))
 - Based on [Yeoman scaffolding tool](http://yeoman.io/)
+- Visuals such as glyphicons, navbar/homepage design modified and inspired from [Bootstrap framework](http://getbootstrap.com/)
 - Database hosted on [mongoLab](https://mlab.com/home), great tool to easily analyze database contents!
   * username: tetrascience
   * password: tetrascience123
