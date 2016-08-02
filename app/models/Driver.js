@@ -25,28 +25,28 @@ var SerialComSchema = new Mongoose.Schema({
 
 
 /** Trigger Action **/
-var TriggerActionSchema = new Mongoose.Schema({
+var TriggerActionSchema = {
     method      :   {type: String, enum: ['email','sms','phone']},
     template    :   {type: String}  // if none, will use the default template. todo: introduce view model, and save template there.
-});
+};
 
 /** Trigger **/
-var TriggerSchema = new Mongoose.Schema({       // todo: just use obj
+var TriggerSchema = {       // todo: just use obj
     allow_multiple      :   {type: Boolean, default: true}, // whether it's allowed to create multiple trigger on temperature feed
                                                             // todo: what if trigger is created and then the driver changes, how about legacy triggers
 
     trigger_type        :   {type: String, enum: ['state','numerical','connectivity']},
     trigger_labels      :   [{value: Number, label: String}],
-    trigger_eval        :   {type: Function},
+    trigger_eval        :   {type: String},
 
     one_time            :   {type: Boolean, default: false}, // one_time trigger can only be triggered once, i.e, 'alert me when idle' (could be overkill)
     trigger_action      :   [TriggerActionSchema]
-});
+};
 
 /** Filter **/
 var FilterSchema = new Mongoose.Schema({
     regex       :   {type: String},
-    name        :   {typpe: String},
+    name        :   {type: String},
     // todo: should action contain trigger? this way we can decide whether cycle complete should show up on the trigger modal.
     // todo: (commonly known as the alert modal, but essentially user is creating/enabling the triggers)
     action      :   [{
