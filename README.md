@@ -31,7 +31,7 @@ Search through available drivers/planned enablement instruments by:
 ##To run locally
 1. Clone or download zip
 2. cd to root of the project
-3. Run by entering `$node server` or `$grunt` to refresh page after local code changes
+3. Run by entering `$ node server` or `$ grunt` to refresh page after local code changes
 4. See it in action by going to localhost:3000 in a browser
 
 ##Resources
