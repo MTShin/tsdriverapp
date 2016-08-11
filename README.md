@@ -15,17 +15,16 @@ Search through available drivers/planned enablement instruments by:
 - Driver name
 - Driver ID
 
-Notes
+##Notes
 - Must be logged in to access the Driver Database
 - No field is required when creating new drivers for flexibility
 - Status color schemes set to mirror JIRA ticket status colors
 - Forgot Password is not functional
 
-Future Implementations (From highest to lowest priority)
+##Future Features (From highest to lowest priority)
 1. Count: Number of drivers for each status, especially total (demo/deployed) listed on homepage
 2. File Upload: E.g. user manual upload capability in the individual driver modals
 3. updatedAt field and by who?
-
 
 ##To run locally
 1. Clone or download zip
