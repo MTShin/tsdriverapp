@@ -31,9 +31,8 @@ Search through available drivers/planned enablement instruments by:
 ##To run locally
 1. Clone or download zip
 2. cd to root of the project
-3. Enter `$npm install` in console
-4. Run by entering `$node server` or `$grunt` to refresh page after local code changes
-5. See it in action by going to localhost:3000 in a browser
+3. Run by entering `$node server` or `$grunt` to refresh page after local code changes
+4. See it in action by going to localhost:3000 in a browser
 
 ##Resources
 - Built using the MEAN Stack ([MongoDB](https://www.mongodb.com/), [Express.js](https://expressjs.com/), [Angular.js](https://github.com/angular/angular.js), and [Node.js](https://nodejs.org/en/))
