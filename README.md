@@ -15,18 +15,30 @@ Search through available drivers/planned enablement instruments by:
 - Driver name
 - Driver ID
 
+######Notes
+- Must be logged in to access the Driver Database
+- No field is required when creating new drivers for flexibility
+- Status color schemes set to mirror JIRA ticket status colors
+- Forgot Password is not functional
+
+######Future Implementations (From highest to lowest priority)
+1. Count: Number of drivers for each status, especially total (demo/deployed) listed on homepage
+2. File Upload: E.g. user manual upload capability in the individual driver modals
+3. updatedAt field and by who?
+
+
 ##To run locally
 1. Clone or download zip
 2. cd to root of the project
-3. Enter $npm install in console
-4. Run by entering $node server or $grunt to refresh page after local code changes
+3. Enter `$npm install` in console
+4. Run by entering `$node server` or `$grunt` to refresh page after local code changes
 5. See it in action by going to localhost:3000 in a browser
 
 ##Resources
 - Built using the MEAN Stack ([MongoDB](https://www.mongodb.com/), [Express.js](https://expressjs.com/), [Angular.js](https://github.com/angular/angular.js), and [Node.js](https://nodejs.org/en/))
 - Based on [Yeoman scaffolding tool](http://yeoman.io/)
 - Visuals such as glyphicons, navbar/homepage design modified and inspired from [Bootstrap framework](http://getbootstrap.com/)
-- Database hosted on [mongoLab](https://mlab.com/home), great tool to easily analyze database contents!
+- Database hosted on [mongoLab](https://mlab.com/home), sandbox database (consider upgrading to more production suitable database before deployment)
   * username: tetrascience
   * password: tetrascience123
   * database: tsdriverapp

@@ -9,6 +9,11 @@ module.exports = function(app) {
 		.get(drivers.list)
 		.post(users.requiresLogin, drivers.create);
 
+/*
+	app.route('/drivers/driverCount')
+		.get(drivers.driverCount);
+*/
+
 	app.route('/drivers/:driverId')
 		.get(drivers.read)
 		.put(users.requiresLogin, drivers.hasAuthorization, drivers.update)

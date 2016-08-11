@@ -85,6 +85,28 @@ exports.list = function(req, res) {
 };
 
 /**
+ * Count drivers by STATUS
+ */
+// exports.driverCount = function(req, res) {
+// 	mongoose.connection.db.collection('drivers', function(Driver) {
+// 		Driver.aggregate([
+// 			{$group: {
+// 				_id: '$status',
+// 				count: {$sum: 1}
+// 			}}
+// 		], function(err,result) {
+// 			if (err) {
+// 				return res.status(400).send({
+// 					message: errorHandler.getErrorMessage(err)
+// 				});
+// 			} else {
+// 				res.jsonp(drivers);
+// 			}
+// 		})
+// 	});
+// };
+
+/**
  * Driver middleware
  */
 exports.driverByID = function(req, res, next, id) { 
