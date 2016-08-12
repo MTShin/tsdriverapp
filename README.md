@@ -43,7 +43,7 @@ This app is currently deployed via ([Heroku](https://tsdriverappprod.herokuapp.c
 - Built using the MEAN Stack ([MongoDB](https://www.mongodb.com/), [Express.js](https://expressjs.com/), [Angular.js](https://github.com/angular/angular.js), and [Node.js](https://nodejs.org/en/))
 - Based on [Yeoman scaffolding tool](http://yeoman.io/)
 - Visuals such as glyphicons, navbar/homepage design modified and inspired from [Bootstrap framework](http://getbootstrap.com/)
-- Database hosted on [mongoLab](https://mlab.com/home), sandbox database (consider upgrading to more production suitable database before deployment)
+- Database hosted on [mongoLab](https://mlab.com/home) using its free sandbox database
   * username: tetrascience
   * password: tetrascience123
   * database: tsdriverapp
