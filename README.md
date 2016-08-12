@@ -28,7 +28,12 @@ Search through available drivers/planned enablement instruments by:
 2. File Upload: E.g. user manual upload capability in the individual driver modals
 3. updatedAt field and by who?
 
-##To run locally
+##To run...
+
+######In browser
+This app is currently deployed via ([Heroku](https://tsdriverappprod.herokuapp.com/)).
+
+######Locally
 1. Clone or download zip
 2. cd to root of the project
 3. Run by entering `$ node server` or `$ grunt` to refresh page after local code changes
