@@ -1,7 +1,7 @@
 {
 	"name": "tsdriverapp",
 	"description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"author": "TetraScience",
 	"engines": {
 		"node": "0.10.x",

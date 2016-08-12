@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://tsdriverappprod:tsdriverappprod@ds153745.mlab.com:53745/tsdriverappprod' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/tsdriverapp',
+	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://tsdriverappprod:tsdriverappprod@ds153745.mlab.com:53745/tsdriverappprod',
 	assets: {
 		lib: {
 			css: [
