@@ -15,7 +15,7 @@ Search through available drivers/planned enablement instruments by:
 - Driver name
 - Driver ID
 
-##Notes
+######Note
 - Must be logged in to access the Driver Database
 - No field is required when creating new drivers for flexibility
 - Status color schemes set to mirror JIRA ticket status colors
@@ -32,6 +32,9 @@ Search through available drivers/planned enablement instruments by:
 
 ######In browser
 This app is currently deployed via ([Heroku](https://tsdriverappprod.herokuapp.com/)).
+
+  ######Note
+  Uses Free Dyno plan from Heroku which puts the app to sleep after 30 min. of inactivity. Users can still access the app at anytime but the first launch of the app when it is asleep will take longer than usual. Subsequent launches of the app will be fast assuming the app is awake.
 
 ######Locally
 1. Clone or download zip
