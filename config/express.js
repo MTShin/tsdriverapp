@@ -29,7 +29,8 @@ module.exports = function(db) {
 
 	// Globbing model files
 	config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {
-		if (/Driver|Instrument/g.test(modelPath)) return;
+		if (/Driver|Instrument/g.test(modelPath));
+		 	//return;
 		else
 			require(path.resolve(modelPath));
 	});
