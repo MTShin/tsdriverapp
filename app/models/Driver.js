@@ -26,7 +26,7 @@ var SerialComSchema = {
 
 
 /** Action **/
-    // todo: should require this from else where? since this is only the driver model
+// todo: should require this from else where? since this is only the driver model
 var Action = {
     action_name :   {type: String, required: [true, 'Every action needs an action_name']},
     action_type :   {type: String, required: true, enum:['webhook','notification','command']},
@@ -34,16 +34,17 @@ var Action = {
     value       :   {type: String}, //todo: what's this for
     notification_method      :   {type: String, enum: ['email','sms','phone']},
     notification_template    :   {type: String},  // if none, will use the default template. todo: introduce view model, and save template there.
-    webhook_url :   {type: String}, // post todo: check if this a valid url
-    webhook_method : {type: String, default: 'post', enum: ['get','post']},
-    command_name:   {type: String},
-    exec_command_at: {type: ObjectId, ref: 'Device'} // execute the command as device
+    webhook_url              :   {type: String}, // todo: check if this a valid url
+    webhook_method           : {type: String, default: 'post', enum: ['get','post']},
+    command_name             :   {type: String},
+    exec_command_at          : {type: ObjectId, ref: 'Device'} // execute the command at a particular device
 };
 
 /** Trigger **/
+    // these are the triggers that this driver supports, this is not the schema for the trigger model
 var TriggerSchema = {
     trigger_name        :   {type: String, required: [true, 'Every trigger needs a trigger_name']},
-    trigger_type        :   {type: String, enum: ['filter','feed','onlineOffline','maintenance']},
+    trigger_type        :   {type: String, enum: ['filter','feed','onlineOffline','maintenance']}, //todo: there should be more
     trigger_labels      :   [{value: Number, label: String}],
     trigger_eval        :   {type: String},
     trigger_action      :   [Action], // action will have access to trigger.metaData, device group, feed data or the raw data passed into the filter and the returns from the regex
@@ -56,9 +57,10 @@ var TriggerSchema = {
     filter_name         :   {type: String}, // if trigger_type is filter, filter_name is required
     meta_data_properties:   [{name: {type: String}}] // what metaData should the trigger ask for, for example 'operatorId',
                                                     // such that in trigger_eval something like the following becomes feasible
-                                                    // 'if (!trigger.metaData.operator) { return true; } var operator;
+                                                    // if (!trigger.metaData.operator) { return true; }
+                                                    // var operator;
                                                     // if (device.currentCycle && device.currentCycle.metaData) {
-                                                    // operator = device.currentCycle.metaData.userId;
+                                                    //      operator = device.currentCycle.metaData.userId;
                                                     // }
                                                     // return operator === trigger.operator;'
 };
@@ -77,6 +79,7 @@ var FilterSchema = new Mongoose.Schema({
 var CommandSchema = new Mongoose.Schema({
     command_name            :   {type: String, required: [true, 'Every command needs a command_name']},
     command_string          :   {type: String},
+    command_binary          :   {type: Buffer}, //todo: this should be binary.
     command_params          :   [{
         command_param   :   {type: String}, // param name, should match exactly with the one used in the command_string 'ab{command_param}\r'
         default_val     :   MixType,
@@ -132,6 +135,13 @@ var ApiSchema = new Mongoose.Schema({
     server_url  :   {type: String}
 });
 
+/** USB **/
+// usb communication protocol
+var UsbSchema = {
+    vendor_id   :   {type: Number}, // for example, 0x1093
+    product_id  :   {type: Number}, // for example, 0x2013
+}
+
 /** Driver **/
 var DriverSchema = new Mongoose.Schema({
     // ref to instrument model
@@ -142,7 +152,8 @@ var DriverSchema = new Mongoose.Schema({
         serial      :   SerialComSchema,
         bash        :   '',     // todo: bash script and also allow bash script to take parameter,should bash be part of a command?
         file        :   FileUploaderSchema,
-        api         :   ApiSchema
+        api         :   ApiSchema,
+        usb         :   UsbSchema
     },
     global          :   {
         delimiter   :   {type: String},
