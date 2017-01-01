@@ -1,29 +1,14 @@
-FROM dockerfile/nodejs
+FROM node:boron
 
-MAINTAINER Matthias Luebken, matthias@catalyst-zero.com
+RUN mkdir -p /usr/src/tsdriverapp
+WORKDIR /usr/src/tsdriverapp
 
-WORKDIR /home/mean
-
-# Install Mean.JS Prerequisites
-RUN npm install -g grunt-cli
-RUN npm install -g bower
-
-# Install Mean.JS packages
-ADD package.json /home/mean/package.json
-RUN npm install
-
-# Manually trigger bower. Why doesnt this work via npm install?
-ADD .bowerrc /home/mean/.bowerrc
-ADD bower.json /home/mean/bower.json
-RUN bower install --config.interactive=false --allow-root
+# Install app dependencies, node_modules included in project
+COPY package.json /usr/src/tsdriverapp
 
 # Make everything available for start
-ADD . /home/mean
-
-# currently only works for development
-ENV NODE_ENV development
+COPY . /usr/src/tsdriverapp
 
 # Port 3000 for server
-# Port 35729 for livereload
-EXPOSE 3000 35729
-CMD ["grunt"]
+EXPOSE 3000
+CMD ["node", "server.js"]
