@@ -30,9 +30,12 @@ Search through available drivers/planned enablement instruments by:
 
 ##To run...
 
-######In browser (tested on Firefox and Chrome)
-- This app is currently deployed via [Heroku](https://tsdriverappprod.herokuapp.com/).
-- Currently uses Free Dyno plan from Heroku so the app will sleep after 30 min of inactivity. Users can still access the app at anytime but any access attempt while the app is asleep will be slow. Access attempts once the app is awake will be fast.
+######Docker
+- Image found [here](https://hub.docker.com/r/mtshin/ts-instrument/), pull with `$ docker pull mtshin/ts-instrument`.
+
+######Heroku
+- Deployed via [Heroku](https://tsdriverappprod.herokuapp.com/).
+- Uses Free Dyno plan from Heroku so the app will sleep after 30 min of inactivity. Users can still access the app at anytime but any access attempt while the app is asleep will be slow. Access attempts once the app is awake will be fast.
 
 ######Locally
 1. Clone or download zip
