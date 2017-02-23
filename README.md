@@ -48,9 +48,6 @@ Search through available drivers/planned enablement instruments by:
 - Based on [Yeoman scaffolding tool](http://yeoman.io/)
 - Visuals such as glyphicons, navbar/homepage design modified and inspired from [Bootstrap framework](http://getbootstrap.com/)
 - Database hosted on [mongoLab](https://mlab.com/home) using its free sandbox database
-  * username: tetrascience
-  * password: tetrascience123
-  * database: tsdriverapp
 
 ##Structure
 Notable directories/files are described here
