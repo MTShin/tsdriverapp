@@ -16,7 +16,7 @@ Search through available drivers/planned enablement instruments by:
 - Driver ID
 
 ###### Note
-- Must be logged in to access the Driver Database
+- Must be logged in to access the Driver Database (Try it out with user: test123, pass: test123)
 - No field is required when creating new drivers for flexibility
 - Status color schemes set to mirror JIRA ticket status colors
 - Forgot Password is not functional
